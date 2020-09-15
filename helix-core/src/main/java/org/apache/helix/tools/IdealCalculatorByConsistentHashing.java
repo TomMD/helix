@@ -433,8 +433,8 @@ public class IdealCalculatorByConsistentHashing {
     }
     int maxCount = Integer.MIN_VALUE;
     int minCount = Integer.MAX_VALUE;
-    for (Integer k : countsMap.keySet()) {
-      int count = countsMap.get(k);
+    for (Map.Entry<String,Integer> e : countsMap.entrySet()) {
+      int count = e.getValue();
       sum += count;
       if (maxCount < count) {
         maxCount = count;
@@ -444,8 +444,8 @@ public class IdealCalculatorByConsistentHashing {
       }
     }
     mean = sum / countsMap.size();
-    for (Integer k : countsMap.keySet()) {
-      int count = countsMap.get(k);
+    for (Map.Entry<String,Integer> e : countsMap.entrySet()) {
+      int count = e.getValue();
       deviation += (count - mean) * (count - mean);
     }
     System.out.println("hashring Mean: " + mean + " normal deviation:"
