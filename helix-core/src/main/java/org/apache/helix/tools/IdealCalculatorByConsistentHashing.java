@@ -402,8 +402,8 @@ public class IdealCalculatorByConsistentHashing {
     double mean = sum / (countsMap.size());
     // calculate the deviation of the node distribution
     double deviation = 0;
-    for (String k : countsMap.keySet()) {
-      double count = countsMap.get(k);
+    for (Map.Entry<Key<String>,Integer> e : countsMap.entrySet()) {
+      double count = e.getValue();
       deviation += (count - mean) * (count - mean);
     }
     System.out.println("Mean: " + mean + " normal deviation:"
