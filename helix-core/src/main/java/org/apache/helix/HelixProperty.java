@@ -302,13 +302,13 @@ public class HelixProperty {
    * @return a list of ZNRecord objects
    */
   public static <T extends HelixProperty> List<ZNRecord> convertToList(List<T> typedInstances) {
-    if (typedInstances == null) {
-      return Collections.emptyList();
-    }
-
     List<ZNRecord> records = new ArrayList<>();
-    for (T typedInstance : typedInstances) {
-      records.add(typedInstance.getRecord());
+    if (typedInstances == null) {
+      records = Collections.emptyList();
+    } else  {
+        for (T typedInstance : typedInstances) {
+            records.add(typedInstance.getRecord());
+        }
     }
 
     return records;
