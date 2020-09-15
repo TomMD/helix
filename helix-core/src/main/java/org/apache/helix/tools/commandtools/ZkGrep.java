@@ -446,11 +446,12 @@ public class ZkGrep {
     File outputFile = new File(stripGzSuffix(zipFile.getAbsolutePath()));
 
     byte[] buffer = new byte[1024];
+    GZIPInputStream gzip;
+    FileOutputStream out;
 
     try {
-
-      GZIPInputStream gzis = new GZIPInputStream(new FileInputStream(zipFile));
-      FileOutputStream out = new FileOutputStream(outputFile);
+      gzis = new GZIPInputStream(new FileInputStream(zipFile));
+      out = new FileOutputStream(outputFile);
 
       int len;
       while ((len = gzis.read(buffer)) > 0) {
@@ -462,6 +463,8 @@ public class ZkGrep {
 
       return outputFile;
     } catch (IOException e) {
+      gzis.close();
+      out.close();
       LOG.error("fail to gunzip file: " + zipFile, e);
     }
 
