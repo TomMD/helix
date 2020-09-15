@@ -402,7 +402,7 @@ public class IdealCalculatorByConsistentHashing {
     double mean = sum / (countsMap.size());
     // calculate the deviation of the node distribution
     double deviation = 0;
-    for (Map.Entry<Key<String>,Integer> e : countsMap.entrySet()) {
+    for (Map.Entry<String,Integer> e : countsMap.entrySet()) {
       double count = e.getValue();
       deviation += (count - mean) * (count - mean);
     }
